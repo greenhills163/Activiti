@@ -278,14 +278,14 @@
 
   <select id="selectHistoricTaskInstancesByQueryCriteria" parameterType="org.activiti.engine.impl.HistoricTaskInstanceQueryImpl" resultMap="historicTaskInstanceResultMap">
   	${limitBefore}
-    select distinct RES.* ${limitBetween}
+    select RES.* ${limitBetween}
     <include refid="selectHistoricTaskInstancesByQueryCriteriaSql"/>
     ${orderBy}
     ${limitAfter}
   </select>
   
   <select id="selectHistoricTaskInstanceCountByQueryCriteria" parameterType="org.activiti.engine.impl.HistoricTaskInstanceQueryImpl" resultType="long">
-    select count(DISTINCT RES.ID_)
+    select count(RES.ID_)
     <include refid="selectHistoricTaskInstancesByQueryCriteriaSql"/>
   </select>
   
@@ -309,7 +309,7 @@
   
   <select id="selectHistoricTaskInstancesWithVariablesByQueryCriteria_mssql_or_db2" parameterType="org.activiti.engine.impl.HistoricTaskInstanceQueryImpl" resultMap="historicTaskInstanceAndVariablesResultMap">
     ${limitBefore}
-    select distinct TEMPRES_ID_ as ID_,
+    select TEMPRES_ID_ as ID_,
     TEMPRES_PROC_DEF_ID_ as PROC_DEF_ID_, TEMPRES_PROC_INST_ID_ as PROC_INST_ID_, TEMPRES_EXECUTION_ID_ as EXECUTION_ID_,
     TEMPRES_NAME_ as NAME_, TEMPRES_PARENT_TASK_ID_ as PARENT_TASK_ID_,
     TEMPRES_DESCRIPTION_ as DESCRIPTION_, TEMPRES_OWNER_ as OWNER_, TEMPRES_ASSIGNEE_ as ASSIGNEE_,

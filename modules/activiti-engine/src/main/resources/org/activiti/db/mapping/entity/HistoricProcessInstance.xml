@@ -227,14 +227,14 @@
 
   <select id="selectHistoricProcessInstancesByQueryCriteria" parameterType="org.activiti.engine.impl.HistoricProcessInstanceQueryImpl" resultMap="historicProcessInstanceResultMap">
     ${limitBefore}
-    select distinct RES.* ${limitBetween}, DEF.KEY_ as PROC_DEF_KEY_, DEF.NAME_ as PROC_DEF_NAME_, DEF.VERSION_ as PROC_DEF_VERSION_, DEF.DEPLOYMENT_ID_ as DEPLOYMENT_ID_
+    select RES.* ${limitBetween}, DEF.KEY_ as PROC_DEF_KEY_, DEF.NAME_ as PROC_DEF_NAME_, DEF.VERSION_ as PROC_DEF_VERSION_, DEF.DEPLOYMENT_ID_ as DEPLOYMENT_ID_
     <include refid="selectHistoricProcessInstancesByQueryCriteriaSql"/>
     ${orderBy}
     ${limitAfter}
   </select>
   
   <select id="selectHistoricProcessInstanceCountByQueryCriteria" parameterType="org.activiti.engine.impl.HistoricProcessInstanceQueryImpl" resultType="long">
-    select count(distinct RES.ID_)
+    select count(RES.ID_)
     <include refid="selectHistoricProcessInstancesByQueryCriteriaSql"/>
   </select>
   
@@ -246,7 +246,7 @@
   
   <select id="selectHistoricProcessInstancesWithVariablesByQueryCriteria" parameterType="org.activiti.engine.impl.HistoricProcessInstanceQueryImpl" resultMap="historicProcessInstanceAndVariablesResultMap">
     ${limitBefore}
-    select distinct RES.*, DEF.KEY_ as PROC_DEF_KEY_, DEF.NAME_ as PROC_DEF_NAME_, DEF.VERSION_ as PROC_DEF_VERSION_, DEF.DEPLOYMENT_ID_ as DEPLOYMENT_ID_,
+    select RES.*, DEF.KEY_ as PROC_DEF_KEY_, DEF.NAME_ as PROC_DEF_NAME_, DEF.VERSION_ as PROC_DEF_VERSION_, DEF.DEPLOYMENT_ID_ as DEPLOYMENT_ID_,
     VAR.ID_ as VAR_ID_, 
     VAR.NAME_ as VAR_NAME_, 
     VAR.VAR_TYPE_ as VAR_TYPE_, 
@@ -268,7 +268,7 @@
   
   <select id="selectHistoricProcessInstancesWithVariablesByQueryCriteria_mssql_or_db2" parameterType="org.activiti.engine.impl.HistoricProcessInstanceQueryImpl" resultMap="historicProcessInstanceAndVariablesResultMap">
     ${limitBefore}
-    select distinct TEMPRES_ID_ as ID_,
+    select TEMPRES_ID_ as ID_,
     TEMPRES_BUSINESS_KEY_ as BUSINESS_KEY_, 
     TEMPRES_PROC_DEF_ID_ as PROC_DEF_ID_,
     TEMPRES_START_TIME_ as START_TIME_, 
